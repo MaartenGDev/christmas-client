@@ -1,0 +1,4 @@
+export const ADD_SESSION = 'ADD_SESSION';
+export const UPDATE_SESSION = 'UPDATE_SESSION';
+export const DESTROY_SESSION = 'DESTROY_SESSION';
+export const LOAD_SESSIONS = 'LOAD_GIFTS';
