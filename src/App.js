@@ -4,6 +4,7 @@ import {
   Route, Switch
 } from 'react-router-dom'
 import GiftPage from './containers/GiftPage'
+import LoginPage from './containers/LoginPage'
 
 class App extends Component {
   render () {
@@ -12,7 +13,7 @@ class App extends Component {
         <main className="App">
           <Switch>
             <Route exact path="/" component={GiftPage}/>
-            <Route exact path="/login" component={GiftPage}/>
+            <Route exact path="/login" component={LoginPage}/>
             <Route exact path="/gifts/:id" component={GiftPage}/>
           </Switch>
         </main>

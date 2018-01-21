@@ -4,12 +4,17 @@ import App from './App';
 import { Provider } from 'react-redux'
 import configureStore from './store/configureStore';
 import registerServiceWorker from './registerServiceWorker';
-import { loadGifts } from './actions/giftActions'
 import './App.css'
 import './index.css'
+import { createSessionFromToken } from './actions/sessionActions'
 
 const store = configureStore();
-store.dispatch(loadGifts())
+
+const token = localStorage.getItem('access_token')
+
+if(token !== null){
+  store.dispatch(createSessionFromToken(token));
+}
 
 
 ReactDOM.render(

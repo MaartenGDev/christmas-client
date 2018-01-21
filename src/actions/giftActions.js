@@ -23,7 +23,10 @@ export const loadGiftsSuccess = gifts => ({
 })
 
 export const loadGifts = () => {
-  return async dispatch => {
+  return async (dispatch, getState) => {
+    const { session } = getState();
+    giftApi.setAuthorization(session.access_token);
+
     return giftApi.all()
       .then(gifts => dispatch(loadGiftsSuccess(gifts)))
   }
