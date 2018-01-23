@@ -25,8 +25,8 @@ class LoginPage extends Component {
 
   login = e => {
     const {form} = this.state
-
     this.props.actions.createSession(form)
+
     e.preventDefault()
   }
 
@@ -36,16 +36,16 @@ class LoginPage extends Component {
     this.setState({
       form: {...form, [target.name]: target.value}
     })
-
   }
 
   render () {
-    const {form, session} = this.state
+    const { from } = this.props.location.state || { from: { pathname: '/' } }
+    const { form, session } = this.state
 
 
     if (session.isAuthenticated) {
       return (
-        <Redirect to='/'/>
+        <Redirect to={from} />
       )
     }
 

@@ -13,6 +13,14 @@ class SessionApi extends RestApi {
         .catch(err => rej(err))
     })
   }
+
+  destroy () {
+    return new Promise((res, rej) => {
+      this.requestHelper.destroyJson(`${this.endpoint}/${this.resource}`)
+        .then(response => res(response.data))
+        .catch(err => rej(err))
+    })
+  }
 }
 
 

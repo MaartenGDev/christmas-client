@@ -4,8 +4,7 @@ import App from './App';
 import { Provider } from 'react-redux'
 import configureStore from './store/configureStore';
 import registerServiceWorker from './registerServiceWorker';
-import './App.css'
-import './index.css'
+import './App.min.css'
 import { createSessionFromToken } from './actions/sessionActions'
 
 const store = configureStore();

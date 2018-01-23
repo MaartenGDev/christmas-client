@@ -53,7 +53,7 @@ export const createSessionFromToken = (token) => {
       .then(session => {
         dispatch(createSessionSuccess({...session, access_token: token}))
       }).catch(error => {
-        dispatch(createSessionError(error))
+        dispatch(destroySession(error))
       })
   }
 }
