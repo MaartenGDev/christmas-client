@@ -55,3 +55,7 @@
  * @import "utilities/background-patterns";
  * @import "utilities/skew-transforms";
  */
+
+.mb-18{
+    margin-bottom: 4.5rem;
+}

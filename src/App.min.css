@@ -4430,6 +4430,10 @@ button,
  * @import "utilities/skew-transforms";
  */
 
+.mb-18 {
+  margin-bottom: 4.5rem;
+}
+
 @media (min-width: 576px) {
   .sm\:list-reset {
     list-style: none;

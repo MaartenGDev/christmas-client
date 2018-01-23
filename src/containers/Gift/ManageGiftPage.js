@@ -10,6 +10,7 @@ class ManageGiftPage extends Component {
     hasLoadedGifts: false,
   }
 
+
   componentWillReceiveProps (nextProps) {
     const {hasLoadedGifts} = this.state
     const {session, gift} = nextProps
@@ -59,7 +60,8 @@ class ManageGiftPage extends Component {
 const mapStateToProps = (state, ownProps) => {
   const {id} = ownProps.match.params
   const {session, gifts} = state
-  const loadGiftById = !(['create', 'edit'].includes(id)) && gifts.length
+  const loadGiftById = id !== undefined && gifts.length > 0
+
 
   const gift = loadGiftById
     ? gifts.find(collection => collection.id === parseInt(id, 10))

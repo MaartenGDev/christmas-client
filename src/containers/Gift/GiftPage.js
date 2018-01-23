@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import * as giftActions from '../../actions/giftActions'
 import { bindActionCreators } from 'redux'
+import * as giftActions from '../../actions/giftActions'
 import { Link } from 'react-router-dom'
 
 class GiftPage extends Component {
   state = {
-    gifts: this.props.gifts,
+    gift: this.props.gift,
     session: this.props.session,
+    hasLoadedGifts: false,
   }
 
   componentDidMount () {
@@ -19,42 +20,45 @@ class GiftPage extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    const {gifts, session} = nextProps
+    const {hasLoadedGifts} = this.state
+    const {session, gift} = nextProps
+
+    if (session.isAuthenticated && !hasLoadedGifts) {
+      this.props.actions.loadGifts()
+    }
 
     this.setState({
-      gifts,
-      session
+      session,
+      gift,
+      hasLoadedGifts: true
     })
   }
 
-  handleGiftClick = task => {
-  }
-
   render () {
-    const {gifts} = this.state
+    const {gift} = this.state
 
     return (
-      <div className="p-8">
-        <h1>Gifts</h1>
-        {gifts.map(gift => {
-          return (<div key={gift.id} className="shadow-md rounded-sm p-8">
-            <h3>{gift.title}</h3>
-            <p>{gift.description}</p>
-            {gift.url && <Link to={gift.url}>{gift.url}</Link>}
-            <Link to={`/gifts/${gift.id}/edit`}>Edit</Link>
-          </div>)
-        })}
-      </div>
+      <section className="container mx-auto">
+        <h2>{gift.title}</h2>
+        <p>{gift.description}</p>
+        {gift.url && <Link to={gift.url}>{gift.url}</Link>}
+      </section>
     )
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const {gifts, session} = state
+  const {id} = ownProps.match.params
+  const {session, gifts} = state
+  const loadGiftById = id !== undefined && gifts.length > 0
+
+  const gift = loadGiftById
+    ? gifts.find(collection => collection.id === parseInt(id, 10))
+    : {id: undefined, title: '', description: '', url: ''}
 
   return {
-    gifts,
-    session
+    session,
+    gift
   }
 }
 
