@@ -4434,6 +4434,10 @@ button,
   margin-bottom: 4.5rem;
 }
 
+.container-compact {
+  width: calc(100% - 40px);
+}
+
 @media (min-width: 576px) {
   .sm\:list-reset {
     list-style: none;

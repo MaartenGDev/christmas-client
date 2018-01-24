@@ -10,6 +10,13 @@ class ManageGiftPage extends Component {
     hasLoadedGifts: false,
   }
 
+  componentDidMount () {
+    const {session} = this.state
+
+    if (session.isAuthenticated) {
+      this.props.actions.loadGifts()
+    }
+  }
 
   componentWillReceiveProps (nextProps) {
     const {hasLoadedGifts} = this.state
@@ -33,9 +40,9 @@ class ManageGiftPage extends Component {
   }
 
   updateGift = e => {
-    this.props.actions.updateGift(this.state.gift);
+    this.props.actions.updateGift(this.state.gift)
 
-    e.preventDefault();
+    e.preventDefault()
   }
 
   render () {
@@ -43,16 +50,50 @@ class ManageGiftPage extends Component {
     const isNewGift = gift.id === undefined
 
     return (
-      <section className="container mx-auto">
-        <h2>Manage Gift</h2>
-        <form onSubmit={this.updateGift}>
-          <input type="text" name="title" value={gift.title} onChange={this.handleGiftChange}/>
-          <input type="text" name="description" value={gift.description} onChange={this.handleGiftChange}/>
-          <input type="text" name="url" value={gift.url} onChange={this.handleGiftChange}/>
+      <div className="mx-auto container-compact">
+        <h2 className="font-bold text-xl mt-6 mb-4">Manage Gift</h2>
+        <form onSubmit={this.updateGift} className="shadow-md p-6 mt-2">
+          <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="w-full px-3">
+              <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                     htmlFor="grid-username">
+                Title
+              </label>
+              <input
+                className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3"
+                id="grid-username" type="text" name="title" value={gift.title} onChange={this.handleGiftChange}/>
+            </div>
+          </div>
 
-          <input type="submit" value={isNewGift ? 'Create' : 'Update'}/>
+          <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="w-full px-3">
+              <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                     htmlFor="grid-username">
+                Description
+              </label>
+              <input
+                className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3"
+                id="grid-username" type="text" name="description" value={gift.description}
+                onChange={this.handleGiftChange}/>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="w-full px-3">
+              <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                     htmlFor="grid-username">
+                Url(Optional)
+              </label>
+              <input
+                className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3"
+                id="grid-username" type="text" name="url" value={gift.url} onChange={this.handleGiftChange}/>
+            </div>
+          </div>
+
+          <input type="submit" value={isNewGift ? 'Create' : 'Update'}
+                 className="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded"/>
         </form>
-      </section>
+      </div>
     )
   }
 }
@@ -62,9 +103,8 @@ const mapStateToProps = (state, ownProps) => {
   const {session, gifts} = state
   const loadGiftById = id !== undefined && gifts.length > 0
 
-
   const gift = loadGiftById
-    ? gifts.find(collection => collection.id === parseInt(id, 10))
+    ? gifts.find(gift => gift.id === parseInt(id, 10))
     : {id: undefined, title: '', description: '', url: ''}
 
   return {

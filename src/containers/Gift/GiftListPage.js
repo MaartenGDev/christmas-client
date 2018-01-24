@@ -33,8 +33,9 @@ class GiftListPage extends Component {
     const {gifts} = this.state
 
     return (
-      <div className="p-4">
-        {gifts.map(gift => <Gift key={gift.id} {...gift}/>)}
+      <div className="mx-auto container-compact">
+        <h2 className="font-bold text-xl mt-6 mb-4">My Gifts</h2>
+        {gifts.map(gift => <Gift key={gift.id} {...gift} showManageActions={true} />)}
         <Link to='/gifts/create' className="fixed bg-blue text-white pin-r pin-b mr-4 mb-18 rounded-full shadow-lg"><i className="material-icons p-3">add</i></Link>
       </div>
     )
