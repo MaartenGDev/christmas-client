@@ -23,16 +23,6 @@ export const loadGiftReservations = () => {
   }
 }
 
-export const loadUserGiftReservations = () => {
-  return async (dispatch, getState) => {
-    const { session } = getState();
-    giftReservationApi.setAuthorization(session.access_token);
-
-    return giftReservationApi.me()
-      .then(gifts => dispatch(loadGiftReservationsSuccess(gifts)))
-  }
-}
-
 export const updateGiftReservation = gift => {
   return async (dispatch, getState) => {
     const { session } = getState();

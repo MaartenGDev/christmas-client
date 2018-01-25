@@ -50,7 +50,7 @@ class ManageGiftPage extends Component {
     const isNewGift = gift.id === undefined
 
     return (
-      <div className="mx-auto container-compact">
+      <div className="mx-auto container-compact mb-80">
         <h2 className="font-bold text-xl mt-6 mb-4">Manage Gift</h2>
         <form onSubmit={this.updateGift} className="shadow-md p-6 mt-2">
           <div className="flex flex-wrap -mx-3 mb-6">

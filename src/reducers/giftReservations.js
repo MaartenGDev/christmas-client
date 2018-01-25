@@ -5,6 +5,7 @@ const gifts = (state = [], action) => {
     case types.UPDATE_GIFT_RESERVATION:
       const indexOfGiftToUpdate = state.findIndex(giftReservation => giftReservation.id === action.giftReservation.id);
       const allGifts = [...state];
+      console.log(action.giftReservation)
       allGifts.splice(indexOfGiftToUpdate, 1, action.giftReservation)
       return allGifts
     case types.LOAD_GIFT_RESERVATIONS: {

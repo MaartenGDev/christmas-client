@@ -12,10 +12,10 @@ class UserGiftReservationPage extends Component {
   }
 
   componentDidMount () {
-    const {session} = this.state
+    const {session, giftReservations} = this.state
 
-    if (session.isAuthenticated) {
-      this.props.actions.loadUserGiftReservations();
+    if (session.isAuthenticated && giftReservations.length === 0) {
+      this.props.actions.loadGiftReservations();
     }
   }
 
@@ -24,8 +24,8 @@ class UserGiftReservationPage extends Component {
     const {hasLoadedGiftReservations} = this.state
     const {session, giftReservations} = nextProps
 
-    if (session.isAuthenticated && !hasLoadedGiftReservations) {
-      this.props.actions.loadUserGiftReservations();
+    if (session.isAuthenticated && !hasLoadedGiftReservations && giftReservations.length === 0) {
+      this.props.actions.loadGiftReservations();
     }
 
     this.setState({
@@ -56,7 +56,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     session,
-    giftReservations
+    giftReservations: giftReservations.filter(reservation => reservation.reserved_by === session.user.id)
   }
 }
 

@@ -12,9 +12,9 @@ class GiftReservationListPage extends Component {
   }
 
   componentDidMount () {
-    const {session} = this.state
+    const {session, giftReservations} = this.state
 
-    if (session.isAuthenticated) {
+    if (session.isAuthenticated && giftReservations.length === 0) {
       this.props.actions.loadGiftReservations()
     }
   }
@@ -40,7 +40,7 @@ class GiftReservationListPage extends Component {
 
     return (
       <div className="p-6">
-        <h2 className="font-bold text-xl mt-6 mb-4">All Gifts</h2>
+        <h2 className="font-bold text-xl mt-6 mb-4">Available Gifts</h2>
         {giftReservations.map(gift => {
           return (<Gift key={gift.id} {...gift} />)
         })}
@@ -54,7 +54,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     session,
-    giftReservations
+    giftReservations: giftReservations.filter(reservation => reservation.user_id !== session.user.id)
   }
 }
 

@@ -63,7 +63,7 @@ class LoginPage extends Component {
                 </label>
                 <input
                   className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3"
-                  id="grid-username" type="text" name="name" value={form.name} onChange={this.handleFormChange}/>
+                  id="grid-username" type="text" name="name" placeholder="Username" value={form.name} onChange={this.handleFormChange}/>
               </div>
             </div>
             <div className="flex flex-wrap -mx-3 mb-6">
@@ -74,7 +74,7 @@ class LoginPage extends Component {
                 </label>
                 <input
                   className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3"
-                  id="grid-password" type="password" name="password" placeholder="********" value={form.password}
+                  id="grid-password" type="password" name="password" placeholder="***********" value={form.password}
                   onChange={this.handleFormChange}/>
               </div>
             </div>

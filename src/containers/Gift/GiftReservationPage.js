@@ -36,16 +36,33 @@ class GiftReservationPage extends Component {
     })
   }
 
-  getGiftReservationStatusBackground (giftReservationStatus) {
-    if(giftReservationStatus === giftReservationStatuses.NOT_RESERVED) return 'bg-blue'
-    if(giftReservationStatus === giftReservationStatuses.RESERVED_BY_ME) return 'bg-green';
+  changeReservationStatus = () => {
+    const {session, giftReservation} = this.state
 
-    return 'bg-grey';
+    console.log({...giftReservation, reserved_by: this.getToggledReservationStatus(giftReservation, session.user)})
+    this.props.actions.updateGiftReservation({...giftReservation, reserved_by: this.getToggledReservationStatus(giftReservation, session.user)})
+  }
+
+  getToggledReservationStatus = (giftReservation, user) => {
+    const currentStatus = GiftReservationHelper.getStatus(giftReservation, user)
+
+    if (currentStatus === giftReservationStatuses.NOT_RESERVED) return user.id
+    if (currentStatus === giftReservationStatuses.RESERVED_BY_ME) return -1
+    if (currentStatus === giftReservationStatuses.RESERVED_BY_SOMEONE_ELSE) return giftReservation.reserved_by
+
+    return giftReservation.reserved_by
+  }
+
+  getGiftReservationStatusBackground (giftReservationStatus) {
+    if (giftReservationStatus === giftReservationStatuses.NOT_RESERVED) return 'bg-blue'
+    if (giftReservationStatus === giftReservationStatuses.RESERVED_BY_ME) return 'bg-green'
+
+    return 'bg-grey'
   }
 
   render () {
     const {giftReservation, session} = this.state
-    const reservationStatus = GiftReservationHelper.getStatus(giftReservation, session.user);
+    const reservationStatus = GiftReservationHelper.getStatus(giftReservation, session.user)
 
     return (
       <div className="mx-auto container-compact">
@@ -55,9 +72,11 @@ class GiftReservationPage extends Component {
             <h3 className="font-bold text-xl mb-2">{giftReservation.title}</h3>
             <p className="text-grey-darker text-base">{giftReservation.description}</p>
             {giftReservation.url &&
-            <Link className="no-underline text-indigo mt-2 inline-block" to={giftReservation.url}>{giftReservation.url}</Link>}
+            <Link className="no-underline text-indigo mt-2 inline-block"
+                  to={giftReservation.url}>{giftReservation.url}</Link>}
           </div>
-          <div className={`w-full py-3 px-4 text-white ${this.getGiftReservationStatusBackground(reservationStatus)}`}>
+          <div className={`w-full py-3 px-4 text-white ${this.getGiftReservationStatusBackground(reservationStatus)}`}
+               onClick={this.changeReservationStatus}>
             <p>{GiftReservationHelper.getDescription(reservationStatus)}</p>
           </div>
         </div>
