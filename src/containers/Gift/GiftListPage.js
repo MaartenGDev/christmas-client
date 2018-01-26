@@ -28,14 +28,17 @@ class GiftListPage extends Component {
     })
   }
 
+  deleteGift = (gift, e) => {
+    this.props.actions.destroyGift(gift)
+  }
 
   render () {
-    const {gifts} = this.state
+    const {gifts, session} = this.state
 
     return (
       <div className="mx-auto container-compact">
         <h2 className="font-bold text-xl mt-6 mb-4">My Gifts</h2>
-        {gifts.map(gift => <Gift key={gift.id} {...gift} showManageActions={true} />)}
+        {gifts.map(gift => <Gift key={gift.id} gift={gift} session={session} showReservationStatus={false} showManageActions={true} onDeleteGiftClick={this.deleteGift} />)}
         <Link to='/gifts/create' className="fixed bg-blue text-white pin-r pin-b mr-4 mb-18 rounded-full shadow-lg"><i className="material-icons p-3">add</i></Link>
       </div>
     )

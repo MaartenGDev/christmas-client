@@ -50,23 +50,26 @@ class App extends Component {
     return (
       session.isAuthenticated
         ? (<Router>
-          <main className="App">
-            <Switch>
-              <Route exact path="/login" component={LoginPage}/>
-              <PrivateRoute exact path="/" component={GiftListPage} isAuthenticated={session.isAuthenticated}/>
-              <PrivateRoute exact path="/reservations" component={GiftReservationListPage}
-                            isAuthenticated={session.isAuthenticated}/>
-              <PrivateRoute exact path="/my-reservations" component={UserGiftReservationPage}
-                            isAuthenticated={session.isAuthenticated}/>
-              <PrivateRoute exact path="/gifts/create" component={ManageGiftPage}
-                            isAuthenticated={session.isAuthenticated}/>
-              <PrivateRoute exact path="/reservations/:id" component={GiftReservationPage} isAuthenticated={session.isAuthenticated}/>
-              <PrivateRoute exact path="/gifts/:id/edit" component={ManageGiftPage}
-                            isAuthenticated={session.isAuthenticated}/>
-            </Switch>
+          <div>
+            <main className="App">
+              <Switch>
+                <Route exact path="/login" component={LoginPage}/>
+                <PrivateRoute exact path="/" component={GiftListPage} isAuthenticated={session.isAuthenticated}/>
+                <PrivateRoute exact path="/reservations" component={GiftReservationListPage}
+                              isAuthenticated={session.isAuthenticated}/>
+                <PrivateRoute exact path="/my-reservations" component={UserGiftReservationPage}
+                              isAuthenticated={session.isAuthenticated}/>
+                <PrivateRoute exact path="/gifts/create" component={ManageGiftPage}
+                              isAuthenticated={session.isAuthenticated}/>
+                <PrivateRoute exact path="/reservations/:id" component={GiftReservationPage}
+                              isAuthenticated={session.isAuthenticated}/>
+                <PrivateRoute exact path="/gifts/:id/edit" component={ManageGiftPage}
+                              isAuthenticated={session.isAuthenticated}/>
+              </Switch>
 
+            </main>
             <Tabs tabs={tabs}/>
-          </main>
+          </div>
         </Router>)
         : <LoginPage location={{from: '/'}}/>
     )

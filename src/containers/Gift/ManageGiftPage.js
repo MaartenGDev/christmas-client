@@ -42,6 +42,7 @@ class ManageGiftPage extends Component {
   updateGift = e => {
     this.props.actions.updateGift(this.state.gift)
 
+    this.props.history.push('/')
     e.preventDefault()
   }
 
@@ -50,7 +51,7 @@ class ManageGiftPage extends Component {
     const isNewGift = gift.id === undefined
 
     return (
-      <div className="mx-auto container-compact mb-80">
+      <div className="mx-auto container-compact">
         <h2 className="font-bold text-xl mt-6 mb-4">Manage Gift</h2>
         <form onSubmit={this.updateGift} className="shadow-md p-6 mt-2">
           <div className="flex flex-wrap -mx-3 mb-6">

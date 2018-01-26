@@ -36,13 +36,13 @@ class GiftReservationListPage extends Component {
   }
 
   render () {
-    const {giftReservations} = this.state
+    const {giftReservations, session} = this.state
 
     return (
       <div className="p-6">
         <h2 className="font-bold text-xl mt-6 mb-4">Available Gifts</h2>
         {giftReservations.map(gift => {
-          return (<Gift key={gift.id} {...gift} />)
+          return (<Gift key={gift.id} gift={gift} session={session}/>)
         })}
       </div>
     )

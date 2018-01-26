@@ -39,7 +39,6 @@ class GiftReservationPage extends Component {
   changeReservationStatus = () => {
     const {session, giftReservation} = this.state
 
-    console.log({...giftReservation, reserved_by: this.getToggledReservationStatus(giftReservation, session.user)})
     this.props.actions.updateGiftReservation({...giftReservation, reserved_by: this.getToggledReservationStatus(giftReservation, session.user)})
   }
 
@@ -53,16 +52,11 @@ class GiftReservationPage extends Component {
     return giftReservation.reserved_by
   }
 
-  getGiftReservationStatusBackground (giftReservationStatus) {
-    if (giftReservationStatus === giftReservationStatuses.NOT_RESERVED) return 'bg-blue'
-    if (giftReservationStatus === giftReservationStatuses.RESERVED_BY_ME) return 'bg-green'
-
-    return 'bg-grey'
-  }
-
   render () {
     const {giftReservation, session} = this.state
+
     const reservationStatus = GiftReservationHelper.getStatus(giftReservation, session.user)
+    const reservationStatusColor = GiftReservationHelper.getColor(reservationStatus);
 
     return (
       <div className="mx-auto container-compact">
@@ -75,7 +69,7 @@ class GiftReservationPage extends Component {
             <Link className="no-underline text-indigo mt-2 inline-block"
                   to={giftReservation.url}>{giftReservation.url}</Link>}
           </div>
-          <div className={`w-full py-3 px-4 text-white ${this.getGiftReservationStatusBackground(reservationStatus)}`}
+          <div className={`w-full py-3 px-4 text-white bg-${reservationStatusColor}`}
                onClick={this.changeReservationStatus}>
             <p>{GiftReservationHelper.getDescription(reservationStatus)}</p>
           </div>
