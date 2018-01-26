@@ -12,9 +12,9 @@ class GiftListPage extends Component {
   }
 
   componentDidMount () {
-    const {session} = this.state
+    const {session, gifts} = this.state
 
-    if (session.isAuthenticated) {
+    if (session.isAuthenticated && gifts.length === 0) {
       this.props.actions.loadGifts()
     }
   }

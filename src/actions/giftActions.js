@@ -39,7 +39,8 @@ export const updateGift = gift => {
 
     return giftApi.createOrUpdate(gift)
       .then(savedGift => {
-        const providedGiftWithPossibleNewId = {...gift, id: savedGift.id}
+        const providedGiftWithPossibleNewId = {...gift, id: savedGift.id, user: session.user}
+
         gift.id === undefined
           ? dispatch(createGiftSuccess(providedGiftWithPossibleNewId))
           : dispatch(updateGiftSuccess(providedGiftWithPossibleNewId))
@@ -48,7 +49,10 @@ export const updateGift = gift => {
 }
 
 export const destroyGift = gift => {
-  return async dispatch => {
+  return async (dispatch, getState) => {
+    const {session} = getState()
+    giftApi.setAuthorization(session.access_token)
+
     return giftApi.destroy(gift)
       .then(res => dispatch(destroyGiftSuccess(gift)))
   }

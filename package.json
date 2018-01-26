@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   },
   "devDependencies": {
+    "prop-types": "^15.6.0",
+    "npm-run-all": "^4.1.2",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.0",
@@ -20,6 +21,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "run-s deploy:*",
+    "deploy:js": "yarn build",
+    "deploy:s3": "aws s3 sync --acl public-read --delete build/ s3://christmas.maartendev.me"
   }
 }
