@@ -34,11 +34,13 @@ class GiftListPage extends Component {
 
   render () {
     const {gifts, session} = this.state
+    const hasGifts = gifts.length > 0;
 
     return (
       <div className="mx-auto container-compact">
         <h2 className="font-bold text-xl mt-6 mb-4">My Gifts</h2>
         {gifts.map(gift => <Gift key={gift.id} gift={gift} session={session} showReservationStatus={false} showManageActions={true} onDeleteGiftClick={this.deleteGift} />)}
+        {!hasGifts && <p className="text-grey-darker text-base">No gifts found :( Create one by tapping the + button.</p>}
         <Link to='/gifts/create' className="fixed bg-blue text-white pin-r pin-b mr-4 mb-18 rounded-full shadow-lg"><i className="material-icons p-3">add</i></Link>
       </div>
     )

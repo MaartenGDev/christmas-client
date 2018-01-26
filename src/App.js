@@ -12,9 +12,10 @@ import * as sessionActions from './actions/sessionActions'
 import ManageGiftPage from './containers/Gift/ManageGiftPage'
 import Tabs from './components/Tabs'
 import GiftListPage from './containers/Gift/GiftListPage'
-import UserGiftReservationPage from './containers/Gift/UserGiftReservationPage'
-import GiftReservationListPage from './containers/Gift/GiftReservationListPage'
-import GiftReservationPage from './containers/Gift/GiftReservationPage'
+import UserGiftReservationPage from './containers/GiftReservation/UserGiftReservationPage'
+import GiftReservationListPage from './containers/GiftReservation/GiftReservationListPage'
+import GiftReservationPage from './containers/GiftReservation/GiftReservationPage'
+import LogoutPage from './containers/Session/LogoutPage'
 
 class App extends Component {
   state = {
@@ -54,6 +55,8 @@ class App extends Component {
             <main className="App">
               <Switch>
                 <Route exact path="/login" component={LoginPage}/>
+                <Route exact path="/logout" component={LogoutPage}/>
+
                 <PrivateRoute exact path="/" component={GiftListPage} isAuthenticated={session.isAuthenticated}/>
                 <PrivateRoute exact path="/reservations" component={GiftReservationListPage}
                               isAuthenticated={session.isAuthenticated}/>
