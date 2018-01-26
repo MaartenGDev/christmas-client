@@ -39,7 +39,11 @@ class GiftReservationPage extends Component {
   changeReservationStatus = () => {
     const {session, giftReservation} = this.state
 
-    this.props.actions.updateGiftReservation({...giftReservation, reserved_by: this.getToggledReservationStatus(giftReservation, session.user)})
+    const currentStatus = GiftReservationHelper.getStatus(giftReservation, session.user)
+
+    if(currentStatus !== giftReservationStatuses.RESERVED_BY_SOMEONE_ELSE){
+      this.props.actions.updateGiftReservation({...giftReservation, reserved_by: this.getToggledReservationStatus(giftReservation, session.user)})
+    }
   }
 
   getToggledReservationStatus = (giftReservation, user) => {
