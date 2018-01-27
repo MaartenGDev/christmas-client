@@ -64,6 +64,10 @@
     width: calc(100% - 40px);
 }
 
+.h-150{
+    height: 150px;
+}
+
 .App{
     margin-bottom: 80px;
 }

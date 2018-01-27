@@ -41,8 +41,11 @@ class GiftReservationPage extends Component {
 
     const currentStatus = GiftReservationHelper.getStatus(giftReservation, session.user)
 
-    if(currentStatus !== giftReservationStatuses.RESERVED_BY_SOMEONE_ELSE){
-      this.props.actions.updateGiftReservation({...giftReservation, reserved_by: this.getToggledReservationStatus(giftReservation, session.user)})
+    if (currentStatus !== giftReservationStatuses.RESERVED_BY_SOMEONE_ELSE) {
+      this.props.actions.updateGiftReservation({
+        ...giftReservation,
+        reserved_by: this.getToggledReservationStatus(giftReservation, session.user)
+      })
     }
   }
 
@@ -60,12 +63,17 @@ class GiftReservationPage extends Component {
     const {giftReservation, session} = this.state
 
     const reservationStatus = GiftReservationHelper.getStatus(giftReservation, session.user)
-    const reservationStatusColor = GiftReservationHelper.getColor(reservationStatus);
+    const reservationStatusColor = GiftReservationHelper.getColor(reservationStatus)
 
     return (
       <div className="mx-auto container-compact">
         <h2 className="font-bold text-xl mt-6 mb-4">Manage Reservation</h2>
-        <div className="shadow-md mt-2">
+        <div className="shadow-md mt-2 relative">
+          {giftReservation.image_url &&
+          <div style={{backgroundImage: `url(${giftReservation.image_url})`}}
+               className="h-150 w-full h-full bg-cover bg-top"/>
+          }
+
           <div className="p-6">
             <h3 className="font-bold text-xl mb-2">{giftReservation.title}</h3>
             <p className="text-grey-darker text-base">{giftReservation.description}</p>
