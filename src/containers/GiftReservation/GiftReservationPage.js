@@ -71,7 +71,7 @@ class GiftReservationPage extends Component {
         <div className="shadow-md mt-2 relative">
           {giftReservation.image_url &&
           <div style={{backgroundImage: `url(${giftReservation.image_url})`}}
-               className="h-150 w-full h-full bg-cover bg-top"/>
+               className="h-150 w-full h-full bg-cover bg-center"/>
           }
 
           <div className="p-6">
