@@ -58,7 +58,7 @@ class ManageGiftPage extends Component {
             <div className="w-full px-3">
               <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                      htmlFor="grid-username">
-                Title
+                Title *
               </label>
               <input
                 className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3"
@@ -70,12 +70,12 @@ class ManageGiftPage extends Component {
             <div className="w-full px-3">
               <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                      htmlFor="grid-username">
-                Description
+                Description *
               </label>
               <input
                 className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3"
                 id="grid-username" type="text" name="description" value={gift.description}
-                onChange={this.handleGiftChange}/>
+                onChange={this.handleGiftChange} required/>
             </div>
           </div>
 

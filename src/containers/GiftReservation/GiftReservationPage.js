@@ -65,13 +65,15 @@ class GiftReservationPage extends Component {
     const reservationStatus = GiftReservationHelper.getStatus(giftReservation, session.user)
     const reservationStatusColor = GiftReservationHelper.getColor(reservationStatus)
 
+
+
     return (
       <div className="mx-auto container-compact">
         <h2 className="font-bold text-xl mt-6 mb-4">Manage Reservation</h2>
         <div className="shadow-md mt-2 relative">
           {giftReservation.image_url &&
           <div style={{backgroundImage: `url(${giftReservation.image_url})`}}
-               className="h-150 w-full h-full bg-cover bg-center"/>
+               className="h-150 w-full h-full bg-cover bg-bottom"/>
           }
 
           <div className="p-6">
@@ -79,7 +81,7 @@ class GiftReservationPage extends Component {
             <p className="text-grey-darker text-base">{giftReservation.description}</p>
             {giftReservation.url &&
             <Link className="no-underline text-indigo mt-2 inline-block"
-                  to={giftReservation.url}>{giftReservation.url}</Link>}
+                  to={giftReservation.url} target="_blank">{giftReservation.url}</Link>}
           </div>
           <div className={`w-full py-3 px-4 text-white bg-${reservationStatusColor}`}
                onClick={this.changeReservationStatus}>
