@@ -57,24 +57,24 @@ class ManageGiftPage extends Component {
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full px-3">
               <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-                     htmlFor="grid-username">
+                     htmlFor="grid-title">
                 Title *
               </label>
               <input
                 className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3"
-                id="grid-username" type="text" name="title" value={gift.title} onChange={this.handleGiftChange}/>
+                id="grid-title" type="text" name="title" value={gift.title} onChange={this.handleGiftChange}/>
             </div>
           </div>
 
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full px-3">
               <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-                     htmlFor="grid-username">
+                     htmlFor="grid-description">
                 Description *
               </label>
               <input
                 className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3"
-                id="grid-username" type="text" name="description" value={gift.description}
+                id="grid-description" type="text" name="description" value={gift.description}
                 onChange={this.handleGiftChange} required/>
             </div>
           </div>
