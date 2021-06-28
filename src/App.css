@@ -56,18 +56,18 @@
  * @import "utilities/skew-transforms";
  */
 
-.mb-18{
+.mb-18 {
     margin-bottom: 4.5rem;
 }
 
-.container-compact{
+.container-compact {
     width: calc(100% - 40px);
 }
 
-.h-150{
+.h-150 {
     height: 150px;
 }
 
-.App{
+.App {
     margin-bottom: 80px;
 }
