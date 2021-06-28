@@ -12,6 +12,7 @@ class LoginPage extends Component {
       name: '',
       password: ''
     },
+    isLoading: false,
     session: this.props.session
   }
 
@@ -25,6 +26,7 @@ class LoginPage extends Component {
 
   login = e => {
     const {form} = this.state
+    this.setState({isLoading: true})
     this.props.actions.createSession(form)
 
     e.preventDefault()
@@ -40,7 +42,7 @@ class LoginPage extends Component {
 
   render () {
     const {from} = this.props.location.state || {from: {pathname: '/'}}
-    const {form, session} = this.state
+    const {form, session, isLoading} = this.state
 
     if (session.isAuthenticated) {
       return (
@@ -74,11 +76,11 @@ class LoginPage extends Component {
                 </label>
                 <input
                   className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3"
-                  id="grid-password" type="password" name="password" placeholder="***********" value={form.password}
+                  id="grid-password" type="password" name="password" placeholder="" value={form.password}
                   onChange={this.handleFormChange}/>
               </div>
             </div>
-            <input type="submit" value="Submit" className="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded"/>
+            <input type="submit" value="Submit" className={`text-white font-bold py-2 px-4 rounded ${isLoading ? 'bg-black hover:bg-black cursor-not-allowed' : 'bg-blue hover:bg-blue-dark'}`} disabled={isLoading}/>
           </form>
         </div>
       </div>
